@@ -65,6 +65,8 @@ class Parser:
         elif current_token == 'if':
             print("|    |    statements")
             self.parse_if_statement()
+        elif current_token == 'then' or current_token == 'else' or current_token == 'endif':
+            return
         
             
             
@@ -91,20 +93,21 @@ class Parser:
         expr = self.parse_expression()
 
     def parse_if_statement(self):
-        print("|    |    |    if_statement")
+        print("|    |    if_statement")
         self.tokenizer.expect_current('if')
         self.parse_condition()
 
         self.tokenizer.expect_next('then')
-        print ("|    |    |    then:",'then')
+        print ("|    |    then:",'then')
         self.tokenizer.next()
         self.parse_statements()
 
-        self.tokenizer.expect_next('else')
+        self.tokenizer.expect_current('else')
         print ("|    |    |    else:",'else')
+        self.tokenizer.next()
         self.parse_statements()
 
-        self.tokenizer.expect_next('endif')
+        self.tokenizer.expect_current('endif')
         print ("|    |    |    endif:",'endif')
 
     def parse_while_statement(self):
@@ -137,7 +140,7 @@ class Parser:
             print("|    |    |    |    Expression:",term1)
 
     def parse_condition(self):
-        print("|    |    |    |    condition")
+        print("|    |    |    condition")
         self.parse_expression()
         operator = self.tokenizer.next()
         if operator in {'<', '<=', '>', '>=', '==', '!='}:

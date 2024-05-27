@@ -1,7 +1,8 @@
 INT x
 INT y
 SET x = 1
-IF x > 2
-THEN y = x + 2
-ELSE y = x + 5
+IF x > 2 THEN
+SET y = x + 2 
+ELSE
+SET y = x + 5
 ENDIF
