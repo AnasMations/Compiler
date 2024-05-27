@@ -53,9 +53,9 @@ while_statement -> 'while' condition 'do' statements_block 'endwhile'
 
 function -> 'function' id '(' id ')' statements_block 'endfunction'
 
-read_statement -> 'read' id ';'
+read_statement -> 'read' id
 
-write_statement -> 'write' expression ';'
+write_statement -> 'write' expression
 
 # Expressions
 expression -> term arth_op term

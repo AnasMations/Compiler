@@ -132,7 +132,7 @@ class Parser:
         self.tokenizer.expect_next('do')
         print("|    |    |    do:", 'do')
         self.tokenizer.next()
-        self.parse_statements_block()
+        self.parse_statements()
         self.tokenizer.expect_current('endwhile')
         print("|    |    |    endwhile:", 'endwhile')
 
@@ -149,7 +149,7 @@ class Parser:
         print("|    |    |    Parameter:", param_id)
         self.tokenizer.expect_next(')')
         self.tokenizer.next()
-        self.parse_statements_block()
+        self.parse_statements()
         self.tokenizer.expect_current('endfunction')
         print("|    |    |    endfunction")
 
@@ -169,7 +169,6 @@ class Parser:
         print("|    |    write_statement")
         self.tokenizer.expect_current('write')
         print("|    |    |    Write:")
-        self.tokenizer.next()
         self.parse_expression()
 
     def parse_expression(self):

@@ -42,6 +42,7 @@ class Compiler:
                                    "ENDUNTIL": "enduntil",
                                    "CALL": "call",
                                    "FUNCTION": "function",
+                                   "ENDFUNCTION": "endfunction",
                                    "WRITE": "write",
                                    "READ": "read",
                                    "+": "+",
@@ -55,6 +56,8 @@ class Compiler:
                                    "<=": "<=",
                                    ">=": ">=",
                                    "!=": "!=",
+                                   "(": "(",
+                                   ")": ")",   
                                    "ENDIF": "endif",
                                    }
 

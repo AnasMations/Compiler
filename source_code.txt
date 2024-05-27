@@ -1,8 +1,17 @@
 INT x
 INT y
 SET x = 1
+
 IF x > 2 THEN
 SET y = x + 2 
 ELSE
 SET y = x + 5
 ENDIF
+
+READ x
+
+WHILE x > 2 DO WRITE x + 3 ENDWHILE
+
+FUNCTION myfunc ( parm ) 
+SET parm = parm + 2
+ENDFUNCTION
