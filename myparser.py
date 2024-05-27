@@ -65,7 +65,19 @@ class Parser:
         elif current_token == 'if':
             print("|    |    statements")
             self.parse_if_statement()
-        elif current_token == 'then' or current_token == 'else' or current_token == 'endif':
+        elif current_token == 'while':
+            print("|    |    statements")
+            self.parse_while_statement()
+        elif current_token == 'function':
+            print("|    |    statements")
+            self.parse_function()
+        elif current_token == 'read':
+            print("|    |    statements")
+            self.parse_read_statement()
+        elif current_token == 'write':
+            print("|    |    statements")
+            self.parse_write_statement()
+        elif current_token == 'then' or current_token == 'else' or current_token == 'endif' or current_token == 'endwhile' or current_token == 'endfunction' or current_token == ';':
             return
         
             
@@ -111,23 +123,54 @@ class Parser:
         print ("|    |    |    endif:",'endif')
 
     def parse_while_statement(self):
-        print("TODO")
+        '''
+        while_statement -> 'while' condition 'do' statements_block 'endwhile'
+        '''
+        print("|    |    while_statement")
+        self.tokenizer.expect_current('while')
+        self.parse_condition()
+        self.tokenizer.expect_next('do')
+        print("|    |    |    do:", 'do')
+        self.tokenizer.next()
+        self.parse_statements_block()
+        self.tokenizer.expect_current('endwhile')
+        print("|    |    |    endwhile:", 'endwhile')
 
     def parse_function(self):
-        self.tokenizer.expect('function')
-        function_name = self.tokenizer.next()
-        self.tokenizer.expect('(')
-        param = self.tokenizer.next()
-        self.tokenizer.expect(')')
-        do_block = self.parse_statements_block()
-        self.tokenizer.expect('endfunction')
-        return {'type': 'function', 'name': function_name, 'parameter': param, 'body': do_block}
+        '''
+        function -> 'function' id '(' id ')' statements_block 'endfunction'
+        '''
+        print("|    |    function")
+        self.tokenizer.expect_current('function')
+        func_name = self.tokenizer.next()
+        print("|    |    |    Function name:", func_name)
+        self.tokenizer.expect_next('(')
+        param_id = self.tokenizer.next()
+        print("|    |    |    Parameter:", param_id)
+        self.tokenizer.expect_next(')')
+        self.tokenizer.next()
+        self.parse_statements_block()
+        self.tokenizer.expect_current('endfunction')
+        print("|    |    |    endfunction")
 
     def parse_read_statement(self):
-        print("TODO")
+        '''
+        read_statement -> 'read' id
+        '''
+        print("|    |    read_statement")
+        self.tokenizer.expect_current('read')
+        id_token = self.tokenizer.next()
+        print("|    |    |    Read id:", id_token)
 
     def parse_write_statement(self):
-        print("TODO")
+        '''
+        write_statement -> 'write' expression
+        '''
+        print("|    |    write_statement")
+        self.tokenizer.expect_current('write')
+        print("|    |    |    Write:")
+        self.tokenizer.next()
+        self.parse_expression()
 
     def parse_expression(self):
         term1 = self.tokenizer.next()

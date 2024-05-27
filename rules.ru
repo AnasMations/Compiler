@@ -1,11 +1,11 @@
 ############### Lexemes and Tokens
 
-"LEXEME": "TOKEN",
 "INT": "int", 
 "FLOAT": "float",
 "DOUBLE": "double",
 "BOOL": "bool",
 "STRING": "string",
+"SET": "set",
 "CHAR": "char",
 "SET": "set",
 "IF": "if",
@@ -18,6 +18,9 @@
 "UNTIL": "until",
 "ENDUNTIL": "enduntil",
 "CALL": "call",
+"FUNCTION": "function",
+"WRITE": "write",
+"READ": "read",
 "+": "+",
 "-": "-",
 "*": "*",
@@ -50,9 +53,9 @@ while_statement -> 'while' condition 'do' statements_block 'endwhile'
 
 function -> 'function' id '(' id ')' statements_block 'endfunction'
 
-read_statement -> 'read' id
+read_statement -> 'read' id ';'
 
-write_statement -> 'write' expression
+write_statement -> 'write' expression ';'
 
 # Expressions
 expression -> term arth_op term
